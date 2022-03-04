@@ -1,0 +1,8 @@
+%dw 2.0
+
+type auto_0f338dbd_d069_4677_9e50_0e4fe891f5b8_Output_Payload = {
+  booking_number: String, 
+  message: String, 
+  _?: Any
+}
+

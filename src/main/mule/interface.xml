@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
-http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-    <apikit:config name="prc-apispec-bookmyholiday-config" api="resource::2f608537-a5c2-4e14-8930-49c11e37a87c:prc-apispec-bookmyholiday:2.0.9:raml:zip:prc-apispec-bookmyholiday.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd  http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+    <apikit:config name="prc-apispec-bookmyholiday-config" api="resource::2f608537-a5c2-4e14-8930-49c11e37a87c:prc-apispec-bookmyholiday:2.0.14:raml:zip:prc-apispec-bookmyholiday.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <flow name="prc-apispec-bookmyholiday-main">
         <http:listener path="/api/*" config-ref="HTTP_Listener_config">
             <http:response statusCode="#[vars.httpStatus default 200]">
@@ -15,7 +14,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
         <apikit:router config-ref="prc-apispec-bookmyholiday-config" />
         <error-handler>
             <on-error-propagate type="APIKIT:BAD_REQUEST">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
@@ -28,7 +27,7 @@ output application/json
                 </ee:transform>
             </on-error-propagate>
             <on-error-propagate type="APIKIT:NOT_FOUND">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
@@ -41,7 +40,7 @@ output application/json
                 </ee:transform>
             </on-error-propagate>
             <on-error-propagate type="APIKIT:METHOD_NOT_ALLOWED">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
@@ -54,7 +53,7 @@ output application/json
                 </ee:transform>
             </on-error-propagate>
             <on-error-propagate type="APIKIT:NOT_ACCEPTABLE">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
@@ -67,7 +66,7 @@ output application/json
                 </ee:transform>
             </on-error-propagate>
             <on-error-propagate type="APIKIT:UNSUPPORTED_MEDIA_TYPE">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
@@ -80,7 +79,7 @@ output application/json
                 </ee:transform>
             </on-error-propagate>
             <on-error-propagate type="APIKIT:NOT_IMPLEMENTED">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
@@ -107,7 +106,7 @@ output application/json
         <apikit:console config-ref="prc-apispec-bookmyholiday-config" />
         <error-handler>
             <on-error-propagate type="APIKIT:NOT_FOUND">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
@@ -122,456 +121,48 @@ output application/json
         </error-handler>
     </flow>
     <flow name="put:\cabs:application\json:prc-apispec-bookmyholiday-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  message: "resource added/updated successfully",
-  booking_number: "{{bookingid}}"
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+        <flow-ref doc:name="call updateCabsFlow" doc:id="7ff16f69-5b74-49b9-bdbf-94bf91208139" name="updateCabsFlow" />
     </flow>
     <flow name="put:\hotels:application\json:prc-apispec-bookmyholiday-config">
-		<flow-ref doc:name="call updateHotelDetails" doc:id="59981968-7609-4911-b9b0-014b9fcc2155" name="updateHotelDetails"/>
-    </flow>
-    <flow name="put:\cabs\(flight_id):application\json:prc-apispec-bookmyholiday-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
-            <ee:variables>
-                <ee:set-variable variableName="flight_id">attributes.uriParams.'flight_id'</ee:set-variable>
-            </ee:variables>
-        </ee:transform>
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  booking_number: "123",
-  booking_name: "ABC",
-  origin: "CCU",
-  destination: "BEN",
-  price: {
-    baseFare: 4000,
-    taxes: 1000,
-    total: 5000
-  },
-  currency: "INR",
-  baggage: {
-    total: 22,
-    cabin: 7,
-    checkin: 15
-  },
-  departure_date: "2022-02-23",
-  return_date: "2022-02-23",
-  startTime: "12:15:00",
-  endTime: "16:45:00",
-  noOfDays: 0,
-  pnr: "PK134567",
-  layOver: 2,
-  noOfStops: 1,
-  couponApplied: true,
-  couponName: "500OFF"
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
-    </flow>
-    <flow name="put:\hotels\(hotels_id):application\json:prc-apispec-bookmyholiday-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
-            <ee:variables>
-                <ee:set-variable variableName="hotels_id">attributes.uriParams.'hotels_id'</ee:set-variable>
-            </ee:variables>
-        </ee:transform>
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  booking_number: "123",
-  booking_name: "ABC",
-  origin: "CCU",
-  destination: "BEN",
-  price: {
-    baseFare: 4000,
-    taxes: 1000,
-    total: 5000
-  },
-  currency: "INR",
-  baggage: {
-    total: 22,
-    cabin: 7,
-    checkin: 15
-  },
-  departure_date: "2022-02-23",
-  return_date: "2022-02-23",
-  startTime: "12:15:00",
-  endTime: "16:45:00",
-  noOfDays: 0,
-  pnr: "PK134567",
-  layOver: 2,
-  noOfStops: 1,
-  couponApplied: true,
-  couponName: "500OFF"
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+        <flow-ref doc:name="call updateHotelDetails" doc:id="941618c2-fb2a-485d-ba50-1efd20134901" name="updateHotelDetails" />
     </flow>
     <flow name="get:\cabs:prc-apispec-bookmyholiday-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-[
-  {
-    id: "1",
-    name: "Ola Car Service SUV",
-    number: "OLA-1235",
-    description: "Affordable and secure Car Services",
-    rating: 5,
-    bookingTypes: [
-      {
-        bookingtype: "Petrol"
-      }, 
-      {
-        bookingtype: "Diesel"
-      }
-    ],
-    startDate: "2022-02-27",
-    endDate: "2022-02-27",
-    startTime: "12:15:00",
-    endTime: "16:45:00",
-    noOfDays: 1,
-    layOver: 0,
-    noOfStops: 0,
-    stopLocation: [
-      {
-        location: ""
-      }
-    ],
-    origin: [
-      {
-        locationCode: "BEN",
-        locationDescription: "Bangalore"
-      }
-    ],
-    destination: [
-      {
-        locationCode: "GOA",
-        locationDescription: "Goa"
-      }
-    ],
-    price: {
-      baseFare: 4000,
-      taxes: 1000,
-      total: 5000
-    },
-    currency: "INR",
-    baggage: {
-      total: 3,
-      cabin: 0,
-      checkin: 0
-    }
-  }, 
-  {
-    name: "Ola Car Service DZire",
-    id: "1",
-    number: "OLA-123",
-    description: "Affordable and secure Car Services",
-    rating: 5,
-    bookingTypes: [
-      {
-        bookingtype: "Petrol"
-      }, 
-      {
-        bookingtype: "Diesel"
-      }
-    ],
-    startDate: "2022-02-27",
-    endDate: "2022-02-27",
-    startTime: "12:15:00",
-    endTime: "16:45:00",
-    noOfDays: 1,
-    layOver: 0,
-    noOfStops: 0,
-    stopLocation: [
-      {
-        location: ""
-      }
-    ],
-    origin: [
-      {
-        locationCode: "BEN",
-        locationDescription: "Bangalore"
-      }
-    ],
-    destination: [
-      {
-        locationCode: "GOA",
-        locationDescription: "Goa"
-      }
-    ],
-    price: {
-      baseFare: 4000,
-      taxes: 1000,
-      total: 5000
-    },
-    currency: "INR",
-    baggage: {
-      total: 2,
-      cabin: 0,
-      checkin: 0
-    }
-  }
-]]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+        <flow-ref doc:name="call getcabsFlow" doc:id="c24f4fa7-c97f-4515-bc69-5780a45573ff" name="getcabsFlow" />
     </flow>
     <flow name="get:\flights:prc-apispec-bookmyholiday-config">
-        <flow-ref doc:name="call getFlightsFlow" doc:id="e6a60a08-7fe5-4bae-9a35-b86c08684ed8" name="getFlightsFlow" />
+        <flow-ref doc:name="call getFlightsFlow" doc:id="19956ad5-1bb2-470d-982d-e6ed876e1294" name="getFlightsFlow" />
     </flow>
     <flow name="get:\hotels:prc-apispec-bookmyholiday-config">
-        <flow-ref doc:name="call getHotelsFlow" doc:id="432eab45-170c-478b-b3b3-7ea02f6eeb68" name="getHotelsFlow" />
+        <flow-ref doc:name="call getHotelsFlow" doc:id="ba94ae43-8119-48fd-9af3-a706bdf9f312" name="getHotelsFlow" />
     </flow>
     <flow name="get:\flights\(flight_id):prc-apispec-bookmyholiday-config">
-        <flow-ref doc:name="call getFlightFlow" doc:id="61467f94-66cf-41a5-97e8-99f1c1ffafd8" name="getFlightFlow" />
-    </flow>
-    <flow name="get:\cabs\(flight_id):prc-apispec-bookmyholiday-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
-            <ee:variables>
-                <ee:set-variable variableName="flight_id">attributes.uriParams.'flight_id'</ee:set-variable>
-            </ee:variables>
-        </ee:transform>
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  id: "1",
-  name: "Ola Car Service DZire",
-  number: "Ola-12",
-  bookingtype: "Petrol",
-  rules: [
-    {
-      rule: "Only Two Bags Allowed"
-    }, 
-    {
-      rule: "covid information"
-    }
-  ],
-  images: [
-    {
-      image: "image1.jpg"
-    }, 
-    {
-      image: "image2.jpg"
-    }, 
-    {
-      image: "image3.jpg"
-    }
-  ],
-  startDate: "2022-02-23",
-  endDate: "2022-02-23",
-  startTime: "12:15:00",
-  endTime: "16:45:00",
-  layOver: 0,
-  noOfStops: 0,
-  stopLocation: [],
-  origin: [
-    {
-      locationCode: "HYD",
-      locationDescription: "Hyderabad"
-    }
-  ],
-  destination: [
-    {
-      locationCode: "BEN",
-      locationDescription: "Bengaluru"
-    }
-  ],
-  availability: 10,
-  noOfDays: 0,
-  noOfRooms: 0,
-  roomType: "",
-  bedSize: "",
-  noOfAdults: 2,
-  noOfChildrens: 0,
-  price: {
-    baseFare: 4000,
-    taxes: 1000,
-    total: 5000
-  },
-  currency: "INR",
-  availableCoupons: [
-    {
-      code: "500OFF",
-      description: "Use this coupon to get Rupees 500 discount on purchase of 5000 and above.",
-      rule: "price > 5000"
-    }, 
-    {
-      code: "100OFF",
-      description: "Use this coupon to get Rupees 100 discount on purchase of 1000 and above.",
-      rule: "price > 1000"
-    }
-  ],
-  baggage: {
-    total: 2,
-    cabin: 0,
-    checkin: 0
-  },
-  cancellationPolicy: [
-    {
-      timeFrame: "0-2 Hours",
-      charges: "5000"
-    }, 
-    {
-      timeFrame: "2-72 Hours",
-      charges: "3000"
-    }, 
-    {
-      timeFrame: "more than 72 Hours",
-      charges: "500"
-    }
-  ],
-  reschedulePolicy: [
-    {
-      timeFrame: "0-2 Hours",
-      charges: "4000"
-    }, 
-    {
-      timeFrame: "2-72 Hours",
-      charges: "2000"
-    }, 
-    {
-      timeFrame: "more than 72 Hours",
-      charges: "200"
-    }
-  ]
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+        <flow-ref doc:name="call getFlightFlow" doc:id="778bcfe7-c099-4d2c-b919-49ad6bfa9648" name="getFlightFlow" />
     </flow>
     <flow name="get:\hotels\(hotels_id):prc-apispec-bookmyholiday-config">
-        <flow-ref doc:name="call getHotelFlow" doc:id="dd15c7c6-9b12-4def-a45f-4f1a0ffde638" name="getHotelFlow" />
+        <flow-ref doc:name="call getHotelFlow" doc:id="d3e9acae-38a0-4386-b713-2252906069e4" name="getHotelFlow" />
     </flow>
     <flow name="post:\flights\(flight_id)\booking:application\json:prc-apispec-bookmyholiday-config">
-        <flow-ref doc:name="call bookFlight" doc:id="16736187-78f6-478f-ae50-730fdab297e5" name="bookFlight" />
+        <flow-ref doc:name="call bookFlight" doc:id="9aebeddc-f020-4cf2-a7ee-f3628f4b1496" name="bookFlight" />
     </flow>
     <flow name="post:\cabs:application\json:prc-apispec-bookmyholiday-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  message: "resource added/updated successfully",
-  booking_number: "{{bookingid}}"
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+        <flow-ref doc:name="call addCabsFlow" doc:id="e63f9139-9742-4759-b38a-1b3181844109" name="addCabsFlow" />
     </flow>
     <flow name="post:\flights:application\json:prc-apispec-bookmyholiday-config">
-        <flow-ref doc:name="call addFlight" doc:id="cdd3032b-9f8e-4b18-a3ac-46fd864307af" name="addFlight" />
+        <flow-ref doc:name="call addFlight" doc:id="39952b8d-a7b9-4769-867c-072c110335b0" name="addFlight" />
     </flow>
     <flow name="post:\hotels:application\json:prc-apispec-bookmyholiday-config">
-		<flow-ref doc:name="call addHotel" doc:id="2bd7aaa0-0512-42a8-accb-f1604d76dbac" name="addHotel"/>
-    </flow>
-    <flow name="post:\cabs\(flight_id):application\json:prc-apispec-bookmyholiday-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
-            <ee:variables>
-                <ee:set-variable variableName="flight_id">attributes.uriParams.'flight_id'</ee:set-variable>
-            </ee:variables>
-        </ee:transform>
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  booking_number: "123",
-  booking_name: "ABC",
-  origin: "CCU",
-  destination: "BEN",
-  price: {
-    baseFare: 4000,
-    taxes: 1000,
-    total: 5000
-  },
-  currency: "INR",
-  baggage: {
-    total: 22,
-    cabin: 7,
-    checkin: 15
-  },
-  departure_date: "2022-02-23",
-  return_date: "2022-02-23",
-  startTime: "12:15:00",
-  endTime: "16:45:00",
-  noOfDays: 0,
-  pnr: "PK134567",
-  layOver: 2,
-  noOfStops: 1,
-  couponApplied: true,
-  couponName: "500OFF"
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
-    </flow>
-    <flow name="post:\hotels\(hotels_id):application\json:prc-apispec-bookmyholiday-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
-            <ee:variables>
-                <ee:set-variable variableName="hotels_id">attributes.uriParams.'hotels_id'</ee:set-variable>
-            </ee:variables>
-        </ee:transform>
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  booking_number: "123",
-  booking_name: "ABC",
-  origin: "CCU",
-  destination: "BEN",
-  price: {
-    baseFare: 4000,
-    taxes: 1000,
-    total: 5000
-  },
-  currency: "INR",
-  baggage: {
-    total: 22,
-    cabin: 7,
-    checkin: 15
-  },
-  departure_date: "2022-02-23",
-  return_date: "2022-02-23",
-  startTime: "12:15:00",
-  endTime: "16:45:00",
-  noOfDays: 0,
-  pnr: "PK134567",
-  layOver: 2,
-  noOfStops: 1,
-  couponApplied: true,
-  couponName: "500OFF"
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+        <flow-ref doc:name="call addHotel" doc:id="e3dc874a-4f0a-4abf-be0a-9bf6878a9a9d" name="addHotel" />
     </flow>
     <flow name="put:\flights\(flight_id)\booking:application\json:prc-apispec-bookmyholiday-config">
-        <flow-ref doc:name="call cancelFlight" doc:id="42202eaf-9f96-4d05-a128-e1106ec7bc51" name="cancelFlight" />
+        <flow-ref doc:name="call cancelFlight" doc:id="4a0bb939-2de8-44ba-a9a2-ad134a7edc7b" name="cancelFlight" />
     </flow>
     <flow name="put:\hotels\(hotels_id)\booking:application\json:prc-apispec-bookmyholiday-config">
-		<ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
+        <ee:transform>
             <ee:variables>
                 <ee:set-variable variableName="hotels_id">attributes.uriParams.'hotels_id'</ee:set-variable>
             </ee:variables>
         </ee:transform>
-		<ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+        <ee:transform xsi:schemaLocation=" http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd  http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
             <ee:message>
                 <ee:set-payload><![CDATA[%dw 2.0
 output application/json
@@ -607,6 +198,15 @@ output application/json
         </ee:transform>
     </flow>
     <flow name="post:\hotels\(hotels_id)\booking:application\json:prc-apispec-bookmyholiday-config">
-        <flow-ref doc:name="call bookHotel" doc:id="d7059b3b-8452-44c5-b27b-5802d90937ba" name="bookHotel" />
+        <flow-ref doc:name="call bookHotel" doc:id="ff6af844-1c82-4939-8038-cac37131cb60" name="bookHotel" />
+    </flow>
+    <flow name="put:\cabs\(cabs_id)\booking:application\json:prc-apispec-bookmyholiday-config">
+        <flow-ref doc:name="call cancelBookingFlow" doc:id="c9687caa-68f8-4291-b05d-32174c9d95ca" name="cancelBookingFlow" />
+    </flow>
+    <flow name="get:\cabs\(cabs_id):prc-apispec-bookmyholiday-config">
+        <flow-ref doc:name="call getCabDetailsFlow" doc:id="4eb01a85-09e8-4fdd-8e2f-e93c8e5a34b3" name="getCabDetailsFlow" />
+    </flow>
+    <flow name="post:\cabs\(cabs_id)\booking:application\json:prc-apispec-bookmyholiday-config">
+        <flow-ref doc:name="call addBookingFlow" doc:id="b6491e78-025d-4605-b7b8-d9767e333921" name="addBookingFlow" />
     </flow>
 </mule>

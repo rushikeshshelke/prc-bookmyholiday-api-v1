@@ -1218,13 +1218,14 @@ validate]]></ee:set-variable>
 		<choice doc:name="Choice" doc:id="a8ea319a-9c73-45a4-9371-987fe7edcefb" >
 			<when expression="#[vars.maxId != null]">
 				<set-payload value="#[vars.inputData]" doc:name="Set Payload" doc:id="2ac863be-d09c-4220-94dd-e6fe2b32a3c2" />
+				<logger level="INFO" doc:name="Logger" doc:id="1f237103-7bb8-49fe-86b8-efa1276c4090" message="#[vars.maxId]"/>
 				<ee:transform doc:name="map to add cabs" doc:id="cb8a8ca3-b04b-439b-92c5-a3656999ff1f">
 					<ee:message>
 						<ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
 {
-	id: payload.id,
+	id: ((vars.maxId.idResponse as Number) + 1) as String,
 	name: payload.name,
 	number: payload.number,
 	description: payload.description default "",
@@ -1244,12 +1245,11 @@ output application/json
 	surgeMultiplier: payload.surgeMultiplier,
 	availableseat: payload.availableSeats,
 	availableCars: payload.availability,
-	price: write(payload.price map(value, index) -> {
-		baseFare : value.baseFare,
-		total: value.total,
-		taxes: value.taxes,
-		bookingtype: value.bookingtype
-	}, "application/json"),
+	price: write({
+		baseFare : payload.price.baseFare,
+		total: payload.price.total,
+		taxes: payload.price.taxes,
+		bookingtype: payload.price.bookingtype}, 'application/json'),
 	images: write(payload.images map(value, index) -> {
 		image: value.image
 	}, "application/json"),
@@ -1300,7 +1300,8 @@ output application/json
 						</ee:transform>
 					</otherwise>
 				</choice>
-			</when>
+			
+</when>
 			<otherwise >
 				<ee:transform doc:name="Transform Message" doc:id="e1e5ce63-729f-4afb-9ba6-0a88ed3db956" >
 					<ee:message >
@@ -1425,7 +1426,7 @@ output application/json
 	lname: payload.lastName default "",
 	userid: if ( payload.isGuest ) 'Guest' else payload.userid default "",
 	isGuest: payload.isGuest,
-	contactNumber: payload.contactNumber,
+	contactNumber: payload.mobileNumber,
 	couponName: payload.couponName default "",
 	couponApplied: payload.couponApplied,
 	price: newPrice,
@@ -1538,12 +1539,11 @@ output application/json
 	surgeMultiplier: payload.surgeMultiplier,
 	availableseat: payload.availableSeats,
 	availableCars: payload.availability,
-	price: write(payload.price map(value, index) -> {
-		baseFare : value.baseFare,
-		total: value.total,
-		taxes: value.taxes,
-		bookingtype: value.bookingtype
-	}, "application/json"),
+	price: {
+		baseFare : payload.price.baseFare,
+		total: payload.price.total,
+		taxes: payload.price.taxes
+	},
 	images: write(payload.images map(value, index) -> {
 		image: value.image
 	}, "application/json"),
@@ -1655,6 +1655,7 @@ output application/json
 				<ee:set-variable variableName="bookingid" ><![CDATA[payload.booking_number]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="5b2962f2-eda1-4921-be5a-83ace1eda406" message="#[payload]  #[vars.cabid]"/>
 		<http:request method="PUT" doc:name="cancel booking request" doc:id="7a68eeb6-7de8-4e18-bee9-6cf1d7f2bc47" config-ref="HTTP_Request_configuration1" path="/cabs/{cab_id}" >
 			<http:uri-params ><![CDATA[#[output application/java
 ---

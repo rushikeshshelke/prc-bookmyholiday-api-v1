@@ -47,25 +47,34 @@ uses:
         updateBookingType: bookingDataType.changeBookin
       
     get:
+        queryParameters:
+          source:
+            type: string
+            example: CCU
+          destination:
+            type: string
+            example: BEN
+          startDate?:
+            type: date-only
+            example: "2022-02-23"
+          noOfPassengers?:
+            type: number
+            example: 2
+            default: 1
+            minimum: 1
     
     /booking:
       type:
         bookingResourceType.bookingDetailsCollection:
           completeBookingResponseExample: !include examples/bookingConfirm.json
+          updateBookingExample: !include examples/bookingChange.json
           submitBookingExample: !include examples/booking.json
           submitBookingType: bookingDataType.submitBooking
+          updateBookingType: bookingDataType.changeBooking
           completeBookingType: bookingDataType.bookingResponse
       post:
       
-    /{bookingID}:
-      /booking:
-        type:
-          bookingResourceType.bookingDetailsCollection:
-            completeBookingResponseExample: !include examples/bookingConfirm.json
-            updateBookingExample: !include examples/bookingChange.json
-            updateBookingType: bookingDataType.changeBooking
-            completeBookingType: bookingDataType.bookingResponse
-        put:
+      put:
 
 
 /hotels:
@@ -80,9 +89,6 @@ uses:
 
   get:
     queryParameters:
-      source:
-        type: string
-        example: CCU
       destination:
         type: string
         example: BEN
@@ -95,7 +101,9 @@ uses:
         default: 1
         minimum: 1
   post:
+
   put:
+
   /{hotels_id}:
     type:
       bookingResourceType.bookingDetailsCollection: 
@@ -109,26 +117,20 @@ uses:
         updateBookingType: bookingDataType.changeBooking
       
     get:
-      queryParameters:
-        source:
-          type: string
-          example: CCU
-        destination:
-          type: string
-          example: BEN
-        startDate?:
-          type: date-only
-          example: "2022-02-23"
-        noOfPassengers?:
-          type: number
-          example: 2
-          default: 1
-          minimum: 1
-        booking_type:
-          example: SAVER
 
-    post:
-    put:
+    /booking:
+      type:
+        bookingResourceType.bookingDetailsCollection:
+          completeBookingResponseExample: !include examples/bookingConfirm.json
+          updateBookingExample: !include examples/bookingChange.json
+          submitBookingExample: !include examples/booking.json
+          submitBookingType: bookingDataType.submitBooking
+          updateBookingType: bookingDataType.changeBooking
+          completeBookingType: bookingDataType.bookingResponse
+
+      post:
+      
+      put:
 
 /cabs:
   type:
@@ -151,14 +153,17 @@ uses:
       startDate?:
         type: date-only
         example: "2022-02-23"
-      noOfPassengers?:
+      endDate?:
+        type: date-only
+        example: "2022-02-24"
+      noOfCars?:
         type: number
         example: 2
         default: 1
         minimum: 1
   post:
   put:
-  /{flight_id}:
+  /{cabs_id}:
     type:
       bookingResourceType.bookingDetailsCollection: 
         getBookingDetailsExample: !include examples/cabDetails.json
@@ -171,22 +176,17 @@ uses:
         updateBookingType: bookingDataType.changeBooking
       
     get:
-      queryParameters:
-        source:
-          type: string
-          example: CCU
-        destination:
-          type: string
-          example: BEN
-        startDate?:
-          type: date-only
-          example: "2022-02-23"
-        noOfPassengers?:
-          type: number
-          example: 2
-          default: 1
-          minimum: 1
-        booking_type:
-          example: SAVER
-    post:
-    put:    
+
+    /booking:
+      type:
+        bookingResourceType.bookingDetailsCollection:
+          completeBookingResponseExample: !include examples/bookingConfirm.json
+          updateBookingExample: !include examples/bookingChange.json
+          submitBookingExample: !include examples/booking.json
+          submitBookingType: bookingDataType.submitBooking
+          updateBookingType: bookingDataType.changeBooking
+          completeBookingType: bookingDataType.bookingResponse
+
+      post:
+      
+      put:  
