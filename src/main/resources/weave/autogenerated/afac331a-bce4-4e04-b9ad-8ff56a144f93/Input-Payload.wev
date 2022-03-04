@@ -1,0 +1,17 @@
+%dw 2.0
+
+type auto_afac331a_bce4_4e04_b9ad_8ff56a144f93_Input_Payload = {
+  bookingtype: "SAVER" | "FLEXI" | "ECONOMY", 
+  insurance?: Boolean, 
+  isGuest: Boolean, 
+  mobileNumber: Number, 
+  departure_date: String, 
+  origin: String, 
+  destination: String, 
+  noOfPassengers: Number, 
+  userName: String, 
+  userid?: String, 
+  return_date: String, 
+  _?: Any
+}
+

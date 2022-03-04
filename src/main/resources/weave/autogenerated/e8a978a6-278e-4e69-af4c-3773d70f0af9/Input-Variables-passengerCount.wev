@@ -1,0 +1,4 @@
+%dw 2.0
+
+type auto_e8a978a6_278e_4e69_af4c_3773d70f0af9_Input_Variables_passengerCount = Any
+
