@@ -1,0 +1,4 @@
+%dw 2.0
+
+type auto_30a03f32_4098_4ee0_a416_0ec21b13af4d_Output_Variables_setFlightNumber = Any
+

@@ -1,0 +1,110 @@
+{
+    "id": "1",
+    "name" : "Taj Hotel",
+    "number" : "Taj-123",
+    "bookingtype" : "Sea View Resort",
+    "rules":
+      [
+        {
+          "rule" : "meals included"
+        },
+        {
+          "rule" : "covid information"
+        }
+      ],
+    "images" : 
+      [
+        {
+          "image" : "image1.jpg"
+        },
+        {
+          "image" : "image2.jpg"
+        },
+        {
+          "image" : "image3.jpg"
+        }
+      ],
+    "startDate": "2022-02-23",
+    "endDate" : "2022-02-23",
+    "startTime" : "12:15:00",
+    "endTime" : "16:45:00",
+    "layOver" : 0,
+    "noOfStops" : 0,
+    "stopLocation":
+      [
+        
+      ],
+    "origin" :
+      [{
+        "locationCode" : "",
+        "locationDescription" : ""
+      }],
+    "destination" : 
+      [{
+        "locationCode" : "GOA",
+        "locationDescription" : "Goa"
+      }],
+    "availability" : 10,
+    "noOfDays" : 2,
+    "noOfRooms" : 2,
+    "roomType" : "AC",
+    "bedSize" : "King",
+    "noOfAdults" : 4,
+    "noOfChildrens" : 1,
+    "price" : 
+      {
+        "baseFare" : 14000,
+        "taxes" : 1000,
+        "total" : 15000
+      },
+    "currency" : "INR",
+    "availableCoupons":
+      [
+        {
+          "code" : "500OFF",
+          "description" : "Use this coupon to get Rupees 500 discount on purchase of 5000 and above.",
+          "rule" : "price > 5000"
+        },
+        {
+          "code" : "100OFF",
+          "description" : "Use this coupon to get Rupees 100 discount on purchase of 1000 and above.",
+          "rule" : "price > 1000"
+        }
+      ],
+    "baggage" : 
+      {
+        "total" : 22,
+        "cabin" : 7,
+        "checkin" : 15
+      },
+    "cancellationPolicy":
+      [
+        {
+          "timeFrame" : "0-2 Hours",
+          "charges" : "5000"
+        },
+        {
+          "timeFrame" : "2-72 Hours",
+          "charges" : "3000"
+        },
+        {
+          "timeFrame" : "more than 72 Hours",
+          "charges" : "500"
+        }
+      ],
+      "reschedulePolicy":
+      [
+        {
+          "timeFrame" : "0-2 Hours",
+          "charges" : "4000"
+        },
+        {
+          "timeFrame" : "2-72 Hours",
+          "charges" : "2000"
+        },
+        {
+          "timeFrame" : "more than 72 Hours",
+          "charges" : "200"
+        }
+      ]
+}

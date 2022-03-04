@@ -1,0 +1,192 @@
+#%RAML 1.0
+title: prc-apispec-bookmyholiday
+description: This is book my holiday API design for flights, hotels and car booking. We can search and book flights and hotels based on the availability provided.
+version: v1
+mediaType: 
+  - application/json
+protocols:
+  - HTTP
+
+uses:
+  bookingDataType: library/bookingDataType.raml
+  bookingResourceType: library/bookingResourceType.raml
+    
+/flights:
+  type:
+    bookingResourceType.bookingCollection:
+      getBookingExample: !include examples/flights.json
+      addBookingExample: !include examples/addBooking.json
+      postResponseExample: !include examples/addBookingResponse.json
+      getBookingType: bookingDataType.booking[]
+      addBookingType: bookingDataType.addBooking
+      postResponseType: bookingDataType.addBookingResponse
+  get:
+    queryParameters:
+      source:
+        type: string
+        example: CCU
+      destination:
+        type: string
+        example: BEN
+      startDate?:
+        type: date-only
+        example: "2022-02-23"
+      noOfPassengers?:
+        type: number
+        example: 2
+        default: 1
+        minimum: 1
+  post:
+
+  /{flight_id}:
+    type:
+      bookingResourceType.bookingDetailsCollection: 
+        getBookingDetailsExample: !include examples/flightDetails.json
+        updateBookingExample: !include examples/bookingChange.json
+        getBookingDetailsType: bookingDataType.bookingDetails
+        updateBookingType: bookingDataType.changeBookin
+      
+    get:
+    
+    /booking:
+      type:
+        bookingResourceType.bookingDetailsCollection:
+          completeBookingResponseExample: !include examples/bookingConfirm.json
+          submitBookingExample: !include examples/booking.json
+          submitBookingType: bookingDataType.submitBooking
+          completeBookingType: bookingDataType.bookingResponse
+      post:
+      
+    /{bookingID}:
+      /booking:
+        type:
+          bookingResourceType.bookingDetailsCollection:
+            completeBookingResponseExample: !include examples/bookingConfirm.json
+            updateBookingExample: !include examples/bookingChange.json
+            updateBookingType: bookingDataType.changeBooking
+            completeBookingType: bookingDataType.bookingResponse
+        put:
+
+
+/hotels:
+  type:
+    bookingResourceType.bookingCollection:
+      getBookingExample: !include examples/hotels.json
+      addBookingExample: !include examples/addBooking.json
+      postResponseExample: !include examples/addBookingResponse.json
+      getBookingType: bookingDataType.booking[]
+      addBookingType: bookingDataType.addBooking
+      postResponseType: bookingDataType.addBookingResponse
+
+  get:
+    queryParameters:
+      source:
+        type: string
+        example: CCU
+      destination:
+        type: string
+        example: BEN
+      startDate?:
+        type: date-only
+        example: "2022-02-23"
+      noOfPassengers?:
+        type: number
+        example: 2
+        default: 1
+        minimum: 1
+  post:
+  put:
+  /{hotels_id}:
+    type:
+      bookingResourceType.bookingDetailsCollection: 
+        getBookingDetailsExample: !include examples/hotelDetails.json
+        completeBookingResponseExample: !include examples/bookingConfirm.json
+        submitBookingExample: !include examples/booking.json
+        updateBookingExample: !include examples/bookingChange.json
+        getBookingDetailsType: bookingDataType.bookingDetails
+        completeBookingType: bookingDataType.bookingResponse
+        submitBookingType: bookingDataType.submitBooking
+        updateBookingType: bookingDataType.changeBooking
+      
+    get:
+      queryParameters:
+        source:
+          type: string
+          example: CCU
+        destination:
+          type: string
+          example: BEN
+        startDate?:
+          type: date-only
+          example: "2022-02-23"
+        noOfPassengers?:
+          type: number
+          example: 2
+          default: 1
+          minimum: 1
+        booking_type:
+          example: SAVER
+
+    post:
+    put:
+
+/cabs:
+  type:
+    bookingResourceType.bookingCollection:
+      getBookingExample: !include examples/cabs.json
+      addBookingExample: !include examples/addBooking.json
+      postResponseExample: !include examples/addBookingResponse.json
+      getBookingType: bookingDataType.booking[]
+      addBookingType: bookingDataType.addBooking
+      postResponseType: bookingDataType.addBookingResponse
+
+  get:
+    queryParameters:
+      source:
+        type: string
+        example: CCU
+      destination:
+        type: string
+        example: BEN
+      startDate?:
+        type: date-only
+        example: "2022-02-23"
+      noOfPassengers?:
+        type: number
+        example: 2
+        default: 1
+        minimum: 1
+  post:
+  put:
+  /{flight_id}:
+    type:
+      bookingResourceType.bookingDetailsCollection: 
+        getBookingDetailsExample: !include examples/cabDetails.json
+        completeBookingResponseExample: !include examples/bookingConfirm.json
+        submitBookingExample: !include examples/booking.json
+        updateBookingExample: !include examples/bookingChange.json
+        getBookingDetailsType: bookingDataType.bookingDetails
+        completeBookingType: bookingDataType.bookingResponse
+        submitBookingType: bookingDataType.submitBooking
+        updateBookingType: bookingDataType.changeBooking
+      
+    get:
+      queryParameters:
+        source:
+          type: string
+          example: CCU
+        destination:
+          type: string
+          example: BEN
+        startDate?:
+          type: date-only
+          example: "2022-02-23"
+        noOfPassengers?:
+          type: number
+          example: 2
+          default: 1
+          minimum: 1
+        booking_type:
+          example: SAVER
+    post:
+    put:    

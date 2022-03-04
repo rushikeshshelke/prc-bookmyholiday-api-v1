@@ -1,0 +1,32 @@
+%dw 2.0
+
+type auto_14ee9b5c_dfcb_454d_bb61_9f1d1c246b1f_Output_Payload = {
+  couponApplied: Boolean, 
+  couponName: String, 
+  baggage: {
+    total: Number, 
+    checkin: Number, 
+    cabin: Number, 
+    _?: Any
+  }, 
+  booking_name: String, 
+  origin: String, 
+  departure_date: String, 
+  destination: String, 
+  layOver: Number, 
+  noOfDays: Number, 
+  booking_number: String, 
+  pnr: String, 
+  price: {
+    baseFare: Number, 
+    total: Number, 
+    taxes: Number, 
+    _?: Any
+  }, 
+  currency: String, 
+  startTime: String, 
+  endTime: String, 
+  return_date: String, 
+  _?: Any
+}
+

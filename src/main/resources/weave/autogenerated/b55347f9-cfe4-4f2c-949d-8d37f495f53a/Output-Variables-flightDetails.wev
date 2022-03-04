@@ -1,0 +1,4 @@
+%dw 2.0
+
+type auto_b55347f9_cfe4_4f2c_949d_8d37f495f53a_Output_Variables_flightDetails = Array<{|  id: Number,   name: String,   flightnumber: String,   description?: String,   rating: Number,   layover: Number,   noofstops: Number,   availableseats: Number,   price: Any,   currency?: String,   baggage: Any,   origin: Any,   destination: Any,   stoplocation?: Any,   startdate: String,   starttime: String,   enddate?: String,   endtime: String,   availablecoupons: Any,   cancellationpolicy: Any,   reschedulepolicy: Any|}>
+

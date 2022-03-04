@@ -1,0 +1,44 @@
+%dw 2.0
+
+type auto_7516d087_724d_4b4d_8e26_e3e8e3c9a445_Output_Payload = {
+  noOfChildrens: Number, 
+  baggage: {
+    total: Number, 
+    checkin: Number, 
+    cabin: Number, 
+    _?: Any
+  }, 
+  endDate: String, 
+  bedSize?: String, 
+  origin: Array<{    locationDescription?: String,     locationCode?: String,     _?: Any  }>, 
+  noOfAdults: Number, 
+  destination: Array<{    locationDescription?: String,     locationCode?: String,     _?: Any  }>, 
+  rules: Array<{    rule: String,     _?: Any  }>, 
+  reschedulePolicy?: Array<{    charges: String,     timeFrame: String,     _?: Any  }>, 
+  availability: Number, 
+  noOfDays: Number, 
+  number: String, 
+  price: {
+    baseFare: Number, 
+    total: Number, 
+    taxes: Number, 
+    _?: Any
+  }, 
+  startTime: String, 
+  currency: String, 
+  id: String, 
+  roomType?: String, 
+  bookingtype: String, 
+  images: Array<{    image: String,     _?: Any  }>, 
+  availableCoupons?: Array<{    code: String,     description: String,     rule: String,     _?: Any  }>, 
+  layOver: Number, 
+  noOfStops: Number, 
+  stopLocation?: Array<{    arrival: String,     location: String,     id: String,     departure: String,     locationCode: String,     _?: Any  }>, 
+  name: String, 
+  endTime: String, 
+  noOfRooms: Number, 
+  startDate: String, 
+  cancellationPolicy?: Array<{    charges: String,     timeFrame: String,     _?: Any  }>, 
+  _?: Any
+}
+

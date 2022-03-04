@@ -1,0 +1,28 @@
+%dw 2.0
+
+type auto_7516d087_724d_4b4d_8e26_e3e8e3c9a445_Input_Attributes = {|
+  clientCertificate?: {|
+    publicKey?: {|  |}, 
+    "type"?: String, 
+    encoded?: Binary
+  |}, 
+  headers: {|  |}, 
+  listenerPath: String, 
+  method: String, 
+  queryParams: {|
+    destination: String, 
+    startDate?: String, 
+    noOfPassengers?: Number, 
+    booking_type: String
+  |}, 
+  queryString: String, 
+  relativePath: String, 
+  remoteAddress: String, 
+  requestPath: String, 
+  requestUri: String, 
+  scheme: String, 
+  uriParams: {| hotels_id: String |}, 
+  version: String, 
+  localAddress: String
+|}
+
