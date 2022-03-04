@@ -9,5 +9,6 @@
 	"userName": "ABC",
 	"userid": "ABC_Account",
 	"isGuest": false,
-	"mobileNumber": 9876543210
+	"mobileNumber": 9876543210,
+	"couponName": "500OFF"
 }
